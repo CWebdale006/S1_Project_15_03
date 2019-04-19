@@ -62,4 +62,50 @@ function calcCart() {
 
       // Stores the value of the group in a session storage variable 
       var confGroup = document.getElementById("groupBox");
+
+      // Stores the value of the email field in a session storage variable 
+      var confMail = document.getElementById("mailBox");
+
+      // Stores the value of the phoneNumber field in a session storage variable 
+      var confPhone = document.getElementById("phoneBox");
+
+      // Stores the value of the banquetGuests field in a session storage variable 
+      var confBanquet = document.getElementById("banquetBox");
+
+      // Multiplies the value of banquetGuests field by 55 
+      var confBanquetCost = document.getElementById("banquetBox").value * 55;
+
+      // If the selected index of the sessionBox selection list isn't equal to -1 
+      if (sessionBox.selectedIndex != -1) {
+            // Stores the text of the selected option 
+            var confSession = sessionBox[sessionBox.selectedIndex].text;
+
+            // Stores the value of the selected option 
+            var confSessionCost = sessionBox[sessionBox.selectedIndex].value;
+      } else {
+            // Sets them to an empty text string and a value of 0 
+            var confSession = "";
+            var confSessionCost = 0;
+      }
+
+      // Sees if the user has selected the "Media Pack" option 
+      if (document.getElementById("mediaCB").checked === true) {
+            // Stores the selections in variables 
+            var confPack = "yes";
+            var confPackCost = 115;
+      } else {
+            var confPack = "no";
+            var confPackCost = 0;
+      }
+
+      // Calculates the total registration cost 
+      var confTotal = parseFloat(confSessionCost) + parseFloat(confBanquetCost) + parseFloat(confPackCost);
+
+      // Calls the "writeSessionValues" function 
+      writeSessionValues();
+}
+
+// Displays the values of the session storage variables in the current web page
+function writeSessionValues() {
+
 }
