@@ -20,3 +20,20 @@
 
 
 */
+// Event listener to run the writeSessionValues on load 
+document.addEventListener("load", writeSessionValues);
+
+// Displays the values of the session storage variables in the current web page
+function writeSessionValues() {
+      // Sets the text content of several span elements to variables 
+      document.querySelectorAll("regName").textContent = confName;
+      document.querySelectorAll("regGroup").textContent = confGroup;
+      document.querySelectorAll("regEmail").textContent = confMail;
+      document.querySelectorAll("regPhone").textContent = confPhone;
+      document.querySelectorAll("regSession").textContent = confSession;
+      document.querySelectorAll("regBanquet").textContent = confBanquet;
+      document.querySelectorAll("regPack").textContent = contPack;
+
+      // Changes another span element 
+      document.getElementById("regTotal").textContent = "$" + confTotal.value;
+}
