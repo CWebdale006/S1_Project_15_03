@@ -37,7 +37,12 @@ window.addEventListener("load", function () {
       document.getElementById("regSubmit").onclick = sessionTest;
 
       // onblur event handler for multiple input boxes 
-      document.querySelectorAll("#fnBox", "#lnBox", "#groupBox", "#mailBox", "#phoneBox", "#banquetBox").onblur = calcCart;
+      document.querySelector("#fnBox").onblur = calcCart;
+      document.querySelector("#lnBox").onblur = calcCart;
+      document.querySelector("#groupBox").onblur = calcCart;
+      document.querySelector("#mailBox").onblur = calcCart;
+      document.querySelector("#phoneBox").onblur = calcCart;
+      document.querySelector("#banquetBox").onblur = calcCart;
 
       // onchange evet handler 
       document.getElementById("sessionBox").onchange = calcCart;
@@ -58,22 +63,22 @@ function sessionTest() {
 // Calculate the registration cost and save information about the customer's choices in session storage 
 function calcCart() {
       // Stores the value of the fist name and last name fields 
-      var confName = document.getElementById("fnBox") + " " + document.getElementById("lnBox");
+      var confName = document.getElementById("fnBox").value + " " + document.getElementById("lnBox").value;
 
       // Stores the value of the group in a session storage variable 
-      var confGroup = document.getElementById("groupBox");
+      var confGroup = document.getElementById("groupBox").value;
 
       // Stores the value of the email field in a session storage variable 
-      var confMail = document.getElementById("mailBox");
+      var confMail = document.getElementById("mailBox").value;
 
       // Stores the value of the phoneNumber field in a session storage variable 
-      var confPhone = document.getElementById("phoneBox");
+      var confPhone = document.getElementById("phoneBox").value;
 
       // Stores the value of the banquetGuests field in a session storage variable 
-      var confBanquet = document.getElementById("banquetBox");
+      var confBanquet = document.getElementById("banquetBox").value;
 
       // Multiplies the value of banquetGuests field by 55 
-      var confBanquetCost = document.getElementById("banquetBox").value * 55;
+      var confBanquetCost = confBanquet * 55;
 
       // If the selected index of the sessionBox selection list isn't equal to -1 
       if (sessionBox.selectedIndex != -1) {
@@ -102,22 +107,20 @@ function calcCart() {
       var confTotal = parseFloat(confSessionCost) + parseFloat(confBanquetCost) + parseFloat(confPackCost);
 
       // Calls the "writeSessionValues" function 
-      writeSessionValues();
+      writeSessionValues(confName, confGroup, confMail, confPhone, confSession, confBanquet, confPack, confTotal);
 }
 
 // Displays the values of the session storage variables in the current web page
-function writeSessionValues() {
+function writeSessionValues(confName, confGroup, confMail, confPhone, confSession, confBanquet, confPack, confTotal) {
       // Sets the text content of several span elements to variables 
-      document.querySelectorAll("regName").textContent = confName;
-      document.querySelectorAll("regGroup").textContent = confGroup;
-      document.querySelectorAll("regEmail").textContent = confMail;
-      document.querySelectorAll("regPhone").textContent = confPhone;
-      document.querySelectorAll("regSession").textContent = confSession;
-      document.querySelectorAll("regBanquet").textContent = confBanquet;
-      document.querySelectorAll("regPack").textContent = contPack;
+      document.querySelector("#regName").textContent = confName;
+      document.querySelector("#regGroup").textContent = confGroup;
+      document.querySelector("#regEmail").textContent = confMail;
+      document.querySelector("#regPhone").textContent = confPhone;
+      document.querySelector("#regSession").textContent = confSession;
+      document.querySelector("#regBanquet").textContent = confBanquet;
+      document.querySelector("#regPack").textContent = confPack;
 
       // Changes another span element 
-      document.getElementById("regTotal").textContent = "$" + confTotal.value;
-
-
+      document.getElementById("regTotal").textContent = "$" + confTotal;
 }
