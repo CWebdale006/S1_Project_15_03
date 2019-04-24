@@ -63,64 +63,64 @@ function sessionTest() {
 // Calculate the registration cost and save information about the customer's choices in session storage 
 function calcCart() {
       // Stores the value of the fist name and last name fields 
-      var confName = document.getElementById("fnBox").value + " " + document.getElementById("lnBox").value;
+      sessionStorage.setItem("confName", document.getElementById("fnBox").value + " " + document.getElementById("lnBox").value);
 
       // Stores the value of the group in a session storage variable 
-      var confGroup = document.getElementById("groupBox").value;
+      sessionStorage.setItem("confGroup", document.getElementById("groupBox").value);
 
       // Stores the value of the email field in a session storage variable 
-      var confMail = document.getElementById("mailBox").value;
+      sessionStorage.setItem("confMail", document.getElementById("mailBox").value);
 
       // Stores the value of the phoneNumber field in a session storage variable 
-      var confPhone = document.getElementById("phoneBox").value;
+      sessionStorage.setItem("confPhone", document.getElementById("phoneBox").value);
 
       // Stores the value of the banquetGuests field in a session storage variable 
-      var confBanquet = document.getElementById("banquetBox").value;
+      sessionStorage.setItem("confBanquet", document.getElementById("banquetBox").value);
 
       // Multiplies the value of banquetGuests field by 55 
-      var confBanquetCost = confBanquet * 55;
+      sessionStorage.setItem("confBanquetCost", sessionStorage.getItem("confBanquet") * 55);
 
       // If the selected index of the sessionBox selection list isn't equal to -1 
       if (sessionBox.selectedIndex != -1) {
             // Stores the text of the selected option 
-            var confSession = sessionBox[sessionBox.selectedIndex].text;
+            sessionStorage.setItem("confSession", sessionBox[sessionBox.selectedIndex].text);
 
             // Stores the value of the selected option 
-            var confSessionCost = sessionBox[sessionBox.selectedIndex].value;
+            sessionStorage.setItem("confSessionCost", sessionBox[sessionBox.selectedIndex].value);
       } else {
             // Sets them to an empty text string and a value of 0 
-            var confSession = "";
-            var confSessionCost = 0;
+            sessionStorage.setItem("confSession", "");
+            sessionStorage.setItem("confSessionCost", 0);
       }
 
       // Sees if the user has selected the "Media Pack" option 
       if (document.getElementById("mediaCB").checked === true) {
             // Stores the selections in variables 
-            var confPack = "yes";
-            var confPackCost = 115;
+            sessionStorage.setItem("confPack", "yes");
+            sessionStorage.setItem("confPackCost", 115);
       } else {
-            var confPack = "no";
-            var confPackCost = 0;
+            sessionStorage.setItem("confPack", "no");
+            sessionStorage.setItem("confPackCost", 0);
       }
 
       // Calculates the total registration cost 
-      var confTotal = parseFloat(confSessionCost) + parseFloat(confBanquetCost) + parseFloat(confPackCost);
+      sessionStorage.setItem("confTotal", parseFloat(sessionStorage.getItem("confSessionCost")) + parseFloat(sessionStorage.getItem("confBanquetCost")) + parseFloat(sessionStorage.getItem("confPackCost")));
 
       // Calls the "writeSessionValues" function 
-      writeSessionValues(confName, confGroup, confMail, confPhone, confSession, confBanquet, confPack, confTotal);
+      writeSessionValues();
 }
 
 // Displays the values of the session storage variables in the current web page
-function writeSessionValues(confName, confGroup, confMail, confPhone, confSession, confBanquet, confPack, confTotal) {
+function writeSessionValues() {
       // Sets the text content of several span elements to variables 
-      document.querySelector("#regName").textContent = confName;
-      document.querySelector("#regGroup").textContent = confGroup;
-      document.querySelector("#regEmail").textContent = confMail;
-      document.querySelector("#regPhone").textContent = confPhone;
-      document.querySelector("#regSession").textContent = confSession;
-      document.querySelector("#regBanquet").textContent = confBanquet;
-      document.querySelector("#regPack").textContent = confPack;
+      document.querySelector("#regName").textContent = sessionStorage.getItem("confName");
+      document.querySelector("#regGroup").textContent = sessionStorage.getItem("confGroup");
+      document.querySelector("#regEmail").textContent = sessionStorage.getItem("confMail");
+      document.querySelector("#regPhone").textContent = sessionStorage.getItem("confPhone");
+      document.querySelector("#regSession").textContent = sessionStorage.getItem("confSession");
+      document.querySelector("#regBanquet").textContent = sessionStorage.getItem("confBanquet");
+      document.querySelector("#regPack").textContent = sessionStorage.getItem("confPack");
 
       // Changes another span element 
-      document.getElementById("regTotal").textContent = "$" + confTotal;
+      document.getElementById("regTotal").textContent = "$" + sessionStorage.getItem("confTotal");
 }

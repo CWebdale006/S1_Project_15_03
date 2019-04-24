@@ -24,16 +24,16 @@
 window.addEventListener("load", writeSessionValues);
 
 // Displays the values of the session storage variables in the current web page
-function writeSessionValues(confName, confGroup, confMail, confPhone, confSession, confBanquet, confPack, confTotal) {
+function writeSessionValues() {
       // Sets the text content of several span elements to variables 
-      document.querySelector("#regName").textContent = confName;
-      document.querySelector("#regGroup").textContent = confGroup;
-      document.querySelector("#regEmail").textContent = confMail;
-      document.querySelector("#regPhone").textContent = confPhone;
-      document.querySelector("#regSession").textContent = confSession;
-      document.querySelector("#regBanquet").textContent = confBanquet;
-      document.querySelector("#regPack").textContent = confPack;
+      document.querySelector("#regName").textContent = sessionStorage.getItem("confName");
+      document.querySelector("#regGroup").textContent = sessionStorage.getItem("confGroup");
+      document.querySelector("#regEmail").textContent = sessionStorage.getItem("confMail");
+      document.querySelector("#regPhone").textContent = sessionStorage.getItem("confPhone");
+      document.querySelector("#regSession").textContent = sessionStorage.getItem("confSession");
+      document.querySelector("#regBanquet").textContent = sessionStorage.getItem("confBanquet");
+      document.querySelector("#regPack").textContent = sessionStorage.getItem("confPack");
 
       // Changes another span element 
-      document.getElementById("regTotal").textContent = "$" + confTotal;
+      document.getElementById("regTotal").textContent = "$" + sessionStorage.getItem("confTotal");
 }
